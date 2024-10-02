@@ -8,8 +8,10 @@ router.post('/', async (req, res) => {
     try {
         const newIssue = new Issue({ id, title, description });
         const savedIssue = await newIssue.save();
+        console.log(`savedIssue=${savedIssue}`);
         res.status(201).json(savedIssue);
     } catch (err) {
+        console.log(`error=${err.message}`);
         res.status(500).json({ message: err.message });
     }
 });
@@ -18,8 +20,10 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const issue = await Issue.find();
+        console.log(`issue=${issue}`);
         res.json(issue);
     } catch (err) {
+        console.log(`error=${err.message}`);
         res.status(500).json({ message: err.message });
     }
 });
@@ -54,6 +58,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     try {
         const deletedIssue = await Issue.findOneAndDelete({ id: req.params.id });
+        console.log(`deletedIssue=${deletedIssue}`);
         if (!deletedIssue) return res.status(404).json({ message: 'Issue not found' });
         res.status(200).json({ message: 'Issue deleted successfully' });
     } catch (err) {
