@@ -1,0 +1,28 @@
+###
+get http://localhost:8080/api/issues
+
+###
+post http://localhost:8080/api/issues
+Content-Type: application/json
+
+{
+  "id": "1",
+  "title": "Test Title1",
+  "description": "Test Description 1"
+}
+
+###
+put http://localhost:8080/api/issues/1
+
+Content-Type: application/json
+
+{
+  "title": "Test Title2",
+  "description": "Test Description 1"
+}
+
+###
+get http://localhost:8080/api/issues/1
+
+###
+delete http://localhost:8080/api/issues/1
